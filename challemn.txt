@@ -1,0 +1,52 @@
+
+USE [Challenge]
+GO
+
+/****** Object:  Table [dbo].[Vehicle]    Script Date: 4/1/2022 04:11:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Vehicle](
+	[Brand] [varchar](50) NULL,
+	[Model] [varchar](50) NULL,
+	[Patent] [varchar](50) NOT NULL,
+	[ChasisNumber] [varchar](max) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Patent] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+
+USE [Challenge]
+GO
+
+/****** Object:  Table [dbo].[Maintenance]    Script Date: 4/1/2022 04:18:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Maintenance](
+	[Patent] [varchar](50) NULL,
+	[KmsTraveled] [bigint] NOT NULL,
+	[NextMaintenance_kms] [bigint] NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Maintenance]  WITH CHECK ADD FOREIGN KEY([Patent])
+REFERENCES [dbo].[Vehicle] ([Patent])
+GO
+
+
+
+
+
+
+
